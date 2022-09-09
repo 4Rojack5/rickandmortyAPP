@@ -1,1 +1,19 @@
-<p>detalles-personaje works!</p>
+<div class="row justify-content-center mt-3" *ngIf="personajes | async as personaje">
+    <div class="col-xs-12 col-sm-6 col-md-4 justify-content-center">
+        <div class="card">
+            <div class="image">
+                    <img class="card-img-top" [src]="personaje.image" [alt]="personaje.name">
+            </div>
+            <div class="card-inner">
+                <div class="header">
+                       <h2>{{ personaje.name | slice: 0:20 }}</h2>
+                        <h4 class="text-muted">{{ personaje.status }}</h4>
+                        <small class="text-muted">{{ personaje.species }}</small>
+                        <a [routerLink]="['/detalles-personaje', personaje.id]">{{ personaje.location | json | slice: 13:21 }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button class="btn btn-dark" (click)="volver()">Back</button>
+

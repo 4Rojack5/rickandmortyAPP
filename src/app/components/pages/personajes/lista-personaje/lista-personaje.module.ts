@@ -2,13 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ListaPersonajeRoutingModule } from './lista-personaje-routing.module';
-import { ListaPersonajeComponent } from './lista-personaje.component';
 
 
 @NgModule({
-  declarations: [
-    ListaPersonajeComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     ListaPersonajeRoutingModule

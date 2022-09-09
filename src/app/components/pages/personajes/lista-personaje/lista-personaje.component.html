@@ -1,1 +1,26 @@
-<p>lista-personaje works!</p>
+<div class="row" infinite-scroll (scrolled)="scrollAbajo()">
+    <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let personaje of personajes">
+        <div class="card">
+            <div class="image">
+                <a [routerLink]="['/detalles-personaje', personaje.id]">
+                    <img class="card-img-top" [src]="personaje.image" [alt]="personaje.name">
+                </a>
+            </div>
+            <div class="card-inner">
+                <div class="header">
+                    <a [routerLink]="['/detalles-personaje', personaje.id]">
+                        <h2>{{ personaje.name | slice: 0:20 }}</h2>
+                    </a>
+                        <h4 class="text-muted">{{ personaje.status }}</h4>
+                        <small class="text-muted">{{ personaje.species }}</small>
+                        <a [routerLink]="['/detalles-personaje', personaje.id]">{{ personaje.location | json | slice: 13:21 }}</a>
+                        <!-- <small class="text-muted">{{ personaje.episode }}</small> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 mt-5 container-notFound" *ngIf="personajes.length <= 0">
+        <p>Sin Resultados</p>
+    </div>
+</div>
+<button class="btn btn-dark" [ngClass]="'no-hidden'" *ngIf="mostrarBotonArriba" (click)="scrollArriba()">Subir</button>
