@@ -1,10 +1,11 @@
-import { Component, inject, OnInit, Inject, HostListener } from '@angular/core';
+import { Component, inject, OnInit, Inject, HostListener, Input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 import { filter, take } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 
 import { Personaje } from '@app/shared/interfaces/personaje.interface';
 import { PersonajeService } from '@app/shared/services/personaje.service';
+import { LocalStorageService } from '@app/shared/services/localStorage.service';
 
 
 
@@ -16,6 +17,7 @@ import { PersonajeService } from '@app/shared/services/personaje.service';
 export class ListaPersonajeComponent implements OnInit {
 
   personajes: Personaje[] = [];
+  page = 1;
   next: string | undefined;
   /*info: RequestInfo = {
     next: null,
@@ -31,13 +33,19 @@ export class ListaPersonajeComponent implements OnInit {
   constructor(@Inject(DOCUMENT) private document:Document,
               private personajeSvc: PersonajeService,
               private route:ActivatedRoute,
-              private router: Router) 
+              private router: Router,
+              private localStorageSvc: LocalStorageService,) 
   { 
     this.urlCambiante();
   }
 
   ngOnInit(): void {
     this.personajesBuscador();
+    this.personajeSvc
+    .filtrarPagina(++this.page)
+    .subscribe((personajes: Personaje[])=>{
+      this.personajes = personajes;
+    });
   }
 
   //Decorador para escuchar un evento
@@ -52,10 +60,12 @@ export class ListaPersonajeComponent implements OnInit {
   }
 
   scrollAbajo():void{
-    if(this.next){
-      this.pageNum++;
-      this.getData();
-    }
+    this.personajeSvc
+    .filtrarPagina(this.page++)
+    .subscribe((personajes: Personaje[])=>{
+      this.personajes.push(...personajes);
+    });
+      
   }
   scrollArriba():void{
     this.document.body.scrollTop = 0; //Safari
@@ -96,6 +106,17 @@ export class ListaPersonajeComponent implements OnInit {
       }
 
     })
+  }
+
+  @Input() personaje: Personaje | undefined;
+
+  getIcon(): string {
+    return this.personaje?.isFavorite ? 'favorito_active.png' : 'favorito.png';
+  }
+  favorito(): void{
+    let isFavorite = this.personaje?.isFavorite;
+    this.getIcon();
+    isFavorite = !isFavorite;
   }
 
 }

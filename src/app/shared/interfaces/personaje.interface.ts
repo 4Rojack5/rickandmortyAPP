@@ -6,4 +6,5 @@ export interface Personaje {
     species: string;
     location: string;
     episode: string;
+    isFavorite?: boolean; 
 }

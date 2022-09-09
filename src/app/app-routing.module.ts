@@ -20,6 +20,8 @@ const routes: Routes = [
     path: 'detalles-personaje/:id', 
     loadChildren: () => import('./components/pages/personajes/detalles-personaje/detalles-personaje.module').then(m => m.DetallesPersonajeModule) 
   },
+  { path: 'detalles-ubicacion/:id', 
+    loadChildren: () => import('./components/pages/personajes/detalles-ubicacion/detalles-ubicacion.module').then(m => m.DetallesUbicacionModule) },
   { 
     path: '**', 
     redirectTo: '/home', 

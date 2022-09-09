@@ -10,10 +10,21 @@
                         <h4 class="text-muted">{{ personaje.status }}</h4>
                         <small class="text-muted">{{ personaje.species }}</small>
                         <a [routerLink]="['/detalles-personaje', personaje.id]">{{ personaje.location | json | slice: 13:21 }}</a>
+
                 </div>
+
             </div>
         </div>
+
+    </div>
+    <div class="container">
+        <ul class="episodes">
+            <li>
+                {{ personaje.episode | json | slice: 2:2440 }}
+            </li>
+        </ul>
     </div>
 </div>
+
 <button class="btn btn-dark" (click)="volver()">Back</button>
 

@@ -1,4 +1,4 @@
-<div class="row" infinite-scroll (scrolled)="scrollAbajo()">
+<div class="row" infinite-scroll  [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="scrollAbajo()">
     <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let personaje of personajes">
         <div class="card">
             <div class="image">
@@ -8,14 +8,61 @@
             </div>
             <div class="card-inner">
                 <div class="header">
-                    <a [routerLink]="['/detalles-personaje', personaje.id]">
-                        <h2>{{ personaje.name | slice: 0:20 }}</h2>
+                    <div class="row">
+                        <div class="col">
+                            <figure class="favorite mt-1 mb-1">
+                                <a>
+                                    <img class="card-img-top" (click)="favorito()" src="/assets/imgs/{{getIcon()}}" rel="preload">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                    <a class="text-center" [routerLink]="['/detalles-personaje', personaje.id]" id="titulo_personaje">
+                        <h3>{{ personaje.name | slice: 0:16 }}</h3>   
                     </a>
-                        <h4 class="text-muted">{{ personaje.status }}</h4>
-                        <small class="text-muted">{{ personaje.species }}</small>
-                        <a [routerLink]="['/detalles-personaje', personaje.id]">{{ personaje.location | json | slice: 13:21 }}</a>
-                        <!-- <small class="text-muted">{{ personaje.episode }}</small> -->
-                </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">Estado:</label>
+                                </div>
+                                <div class="col">
+                                    {{ personaje.status }}
+                                </div>    
+                            </div>  
+                            
+                        </li>
+                        <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">Especie:</label>
+                                </div>
+                                <div class="col">
+                                    {{ personaje.species }}
+                                </div>    
+                            </div>  
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">Ubicación:</label>
+                                </div>
+                                <div class="col">
+                                    <a [routerLink]="['/detalles-ubicacion', personaje.id]">{{ personaje.location | json | slice: 13:21 }}</a>
+                                </div>    
+                            </div>  
+                        </li>
+                        <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="">Ultimo Episodio:</label>
+                                </div>
+                                <div class="col">
+                                    {{ personaje.episode | json | slice: 1:49 }}
+                                </div>    
+                            </div>  
+                        </li>
+                    </ul>
             </div>
         </div>
     </div>

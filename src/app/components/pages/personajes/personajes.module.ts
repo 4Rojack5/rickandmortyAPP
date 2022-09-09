@@ -6,10 +6,12 @@ import { ListaPersonajeComponent } from '@personajes/lista-personaje/lista-perso
 import { DetallesPersonajeComponent } from '@personajes/detalles-personaje/detalles-personaje.component';
 
 import { RouterModule } from '@angular/router';
+import { DetallesUbicacionComponent } from './detalles-ubicacion/detalles-ubicacion.component';
 
 const myComponents = [ 
   DetallesPersonajeComponent, 
-  ListaPersonajeComponent 
+  ListaPersonajeComponent,
+  DetallesUbicacionComponent 
 ];
 
 @NgModule({

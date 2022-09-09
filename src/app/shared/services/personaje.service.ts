@@ -12,10 +12,16 @@ export class PersonajeService {
   constructor(private http: HttpClient) { }
 
   buscarPersonajes(query = '', page = 1){
-    const filter = `${environment.baseUrlAPI}/?name=${query}&page{page}`
+    const filter = `${environment.baseUrlAPI}/?name=${query}&page=${page}`
     return this.http.get<Personaje[]>(filter);
   }
+  
   traerDetalles(id:number){
     return this.http.get<Personaje>(`${environment.baseUrlAPI}/${id}`)
+  }
+
+  filtrarPagina(page = 1){
+    const filter = `${environment.baseUrlAPI}/?page=${page}`
+    return this.http.get<Personaje[]>(filter);
   }
 }

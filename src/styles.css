@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-html{
+html {
+    font-family: 'sdays', sans-serif;
+    background-color: #5E2C99;
     scroll-behavior: smooth;
-}
+  }
 .container{
     margin-top: 4rem;
 }
@@ -44,4 +46,8 @@ img:hover{
     .card:img{
         opacity: 1;
     }
+}
+@font-face {
+    font-family: sdays;
+    src: url(assets/fonts/StrawberryDays.otf) format("opentype");
 }
