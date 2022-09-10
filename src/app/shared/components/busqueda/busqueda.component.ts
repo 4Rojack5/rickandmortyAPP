@@ -12,9 +12,10 @@ export class BusquedaComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  /*Se crea un metodo para buscar el personaje requerido.*/
   onSearch(value: string){
     if(value && value.length > 3){
+      /*Se evaula con if el valor escrito y despues se presenta en el componente lista-personaje.*/
       this.router.navigate(['/lista-personaje'], {
         queryParams: { q: value },
       });

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
+// Se registran todas las rutas de la aplicación
 const routes: Routes = [
   {
     path:'',

@@ -1,76 +1,85 @@
+<!--Se utiliza *ngIf para demostrar que se está trayendo los datos de los servicios.-->
 <div class="row justify-content-center mt-3" *ngIf="personajes | async as personaje">
-    <div class="col-xs-12 col-sm-6 col-md-4 justify-content-center">
-        <div class="card">
-            <div class="image">
-                    <img class="card-img-top" [src]="personaje.image" [alt]="personaje.name" id="img-personaje">
-            </div>
-            <div class="card-inner">
-                <div class="header">
-                    <div class="row">
-                        <div class="col">
-                            <figure class="favorite mt-1 mb-1">
-                                <a>
-                                    <img class="card-img-top" (click)="favorito()" src="/assets/imgs/{{getIcon()}}" rel="preload">
-                                </a>
-                            </figure>
-                        </div>
-                    </div>
-                    <a class="link text-center" [routerLink]="['/detalles-personaje', personaje.id]" id="titulo_personaje">
-                        <h3>{{ personaje.name | slice: 0:20 }}</h3>   
-                    </a>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
-                            <div class="row">
-                                <div class="col">
-                                    <label id="titulo_personaje" for="">Estado:</label>
-                                </div>
-                                <div class="col" id="interpolation-data">
-                                    {{ personaje.status }}
-                                </div>    
-                            </div>  
-                            
-                        </li>
-                        <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
-                            <div class="row">
-                                <div class="col">
-                                    <label id="titulo_personaje">Especie:</label>
-                                </div>
-                                <div class="col" id="interpolation-data">
-                                    {{ personaje.species }}
-                                </div>    
-                            </div>  
-                        </li>
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col">
-                                    <label id="titulo_personaje">Ubicación:</label>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-outline-dark" id="navbar-btn">
-                                    <a [routerLink]="['/detalles-ubicacion', personaje.id]" id="location">
-                                        {{ personaje.location | json | slice: 13:21 }}
-                                    </a>
-                                    </button>
-                                </div>    
-                            </div>  
-                        </li>
-                    </ul>
-                </div>
-            </div>
+ <div class="col-xs-12 col-sm-6 col-md-4 justify-content-center">
+  <div class="card">
+    <div class="image">
+      <!--Se utiliza personaje para traer los datos especificos, en este caso es la imagen y el nombre del personaje.-->
+      <img class="card-img-top" [src]="personaje.image" [alt]="personaje.name" id="img-personaje">
+    </div>
+    <div class="card-inner">
+      <div class="header">
+        <div class="row">
+          <div class="col">
+            <figure class="favorite mt-1 mb-1">
+              <a>
+                <!--Se traer un metodo con un click y una imagen por interpolación.-->
+                <img class="card-img-top" (click)="favorito()" src="/assets/imgs/{{getIcon()}}" rel="preload">
+              </a>
+            </figure>
+          </div>
+        </div>
+            <a class="link text-center" id="titulo_personaje">
+              <!--Se trae el nombre del personaje por interpolacion y se recorta a 20 letras.-->
+              <h3>{{ personaje.name | slice: 0:20 }}</h3>   
+            </a>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <label id="titulo_personaje" for="">Estado:</label>
+                  </div>
+                  <div class="col" id="interpolation-data">
+                    <!--Se trae el estado del personaje por interpolacion.-->
+                    {{ personaje.status }}
+                  </div>    
+                </div>      
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <label id="titulo_personaje">Especie:</label>
+                  </div>
+                  <div class="col" id="interpolation-data">
+                    <!--Se trae la especie del personaje por interpolacion.-->
+                    {{ personaje.species }}
+                  </div>    
+                </div>  
+              </li>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <label id="titulo_personaje">Ubicación:</label>
+                  </div>
+                  <div class="col">
+                    <button type="button" class="btn btn-outline-dark" id="navbar-btn">
+                     <!--Se agrega un router link para que envie a los detalles de la ubicación señalada.-->
+                     <a [routerLink]="['/detalles-ubicacion', personaje.id]" id="location">
+                      <!--Se trae la locación del personaje por interpolacion en tipo JSON además que empiece con la letra 13 y termine en la 21.-->
+                      {{ personaje.location | json | slice: 13:21 }}
+                     </a>
+                    </button>
+                   </div>    
+                 </div>  
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="container mt-5">
-        <ul class="episodes">
-                <label id="list-chap">Lista de Episodios: </label>
-            <li id="personajes-li">
-                <br> 
-                {{ personaje.episode | json | slice: 2:2440 }}
-            </li>
-        </ul>
-    </div>
+  </div>
+ </div>
+ <div class="container mt-5">
+  <ul class="episodes">
+    <label id="list-chap">Lista de Episodios: </label>
+   <li id="personajes-li">
+    <br>
+    <!--Se trae los episodios en los que ha salido el personaje en formato JSON y con slice por interpolacion.--> 
+    {{ personaje.episode | json | slice: 2:2440 }}
+   </li>
+  </ul>
+ </div>
 </div>
 <div class="container-fluid h-100 mt-3 mb-3">
-    <button class="btn btn-dark" (click)="volver()">Volver</button>
+  <!--Se agrega un metodo al hacer click que se llama volver() y devuelve a la pag anterior.-->
+  <button class="btn btn-dark" (click)="volver()">Volver</button>
 </div>
 
 

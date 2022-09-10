@@ -1,16 +1,54 @@
+<!--Se utiliza *ngIf para demostrar que se está trayendo los datos de los servicios.-->
 <div class="row justify-content-center mt-3" *ngIf="ubicaciones | async as ubicacion">
-    <div class="col-xs-12 col-sm-6 col-md-4 justify-content-center">
-        <div class="card">
-            <div class="card-inner">
-                <div class="header">
-                       <h2>{{ ubicacion.name | slice: 0:20 }}</h2>
-                        <h4 class="text-muted">{{ ubicacion.type }}</h4>
-                        <small class="text-muted">{{ ubicacion.dimension }}</small>
-                        <br>
-                        <a>{{ ubicacion.residents }}</a>
+ <div class="col-xs-12 col-sm-6 col-md-4 justify-content-center">
+    <div class="card">
+      <div class="card-inner">
+        <div class="header">
+            <a class="link text-center" id="titulo_personaje">
+            <!--Se trae el nombre de la ubicación por interpolacion y se recorta a 20 letras.-->
+            <h3>{{ ubicacion.name | slice: 0:20 }}</h3> 
+            </a>
+            <ul class="list-group list-group-flush">
+             <li class="list-group-item">
+                <div class="row">
+                    <div class="col">
+                        <label id="titulo_personaje" for="">Tipo: </label>
+                    </div>
+                    <div class="col" id="interpolation-data">
+                        <!--Se trae el tipo de la ubicación por interpolacion.-->
+                        {{ ubicacion.type }}
+                    </div>    
+                </div>  
+             </li>
+             <li class="list-group-item">
+               <div class="row">
+                    <div class="col">
+                        <label id="titulo_personaje">Dimension: </label>
+                    </div>
+                    <div class="col" id="interpolation-data">
+                        <!--Se trae la dimensión de la ubicación por interpolacion.-->
+                        {{ ubicacion.dimension }}
+                    </div>    
                 </div>
-            </div>
+             </li>
+            </ul>
+            <br>
         </div>
     </div>
+  </div>
+ </div>
+ <div class="container mt-5">
+    <ul class="episodes">
+       <label id="list-chap">Lista de Residentes: </label>
+     <li id="personajes-li">
+       <br> 
+       <!--Se trae la lista de residentes de la ubicación por interpolacion y se recorta con slice.-->
+       {{ ubicacion.residents | json | slice: 2:1372 }}
+     </li>
+    </ul>
+ </div>
 </div>
-<button class="btn btn-dark" (click)="volver()">Back</button>
+<div class="container-fluid h-100 mt-3 mb-3">
+  <!--Se agrega un metodo al hacer click que se llama volver() y devuelve a la pag anterior.-->
+  <button class="btn btn-dark" (click)="volver()">Volver</button>
+</div>

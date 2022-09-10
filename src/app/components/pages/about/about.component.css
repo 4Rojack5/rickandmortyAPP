@@ -1,0 +1,23 @@
+/*Se edita el container de la card.*/
+.container-fluid{
+    list-style: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.card{
+    font-family: 'sdays', 'arial', sans-serif;
+    width: 200%;
+}
+.card-title{
+    font-size: 40px;
+}
+.card-text{
+    font-size: 18px;
+}
+/*Se agrega para la resolución moviles.*/
+@media(max-width:570px){
+    .card{
+        opacity: 1;
+    }
+}

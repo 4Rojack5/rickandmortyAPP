@@ -1,12 +1,8 @@
 .favorite{
     width: 60px;
     height: 60px;
-    /*border-width: 1px;
-    border-style: solid;*/
 }
 .col{
-    /*border-width: 1px;
-    border-style: solid;*/
     align-items: center;
     display: flex;
     justify-content: center;

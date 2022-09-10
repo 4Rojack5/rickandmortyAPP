@@ -8,7 +8,9 @@ import { DetallesPersonajeComponent } from '@personajes/detalles-personaje/detal
 import { RouterModule } from '@angular/router';
 import { DetallesUbicacionComponent } from './detalles-ubicacion/detalles-ubicacion.component';
 
-const myComponents = [ 
+/*Se crea una constante llamada mycomponents para resumir en declarations y exports los componentes.*/
+const myComponents = [
+  /*Se agregan los tres componentes creados.*/ 
   DetallesPersonajeComponent, 
   ListaPersonajeComponent,
   DetallesUbicacionComponent 

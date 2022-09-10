@@ -1,3 +1,4 @@
+/*Se diseña un interfaz con los atributos requeridos.*/
 export interface Personaje {
     id:number;
     image: string;

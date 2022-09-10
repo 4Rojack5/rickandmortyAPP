@@ -1,3 +1,4 @@
+/*Decoración del titulo de la Aplicación Web*/
 #titulo{
     color: #EAEAEA;
 }
@@ -7,10 +8,7 @@
 #Tmorty{
     color: #F7C49D;
 }
-/*.container-fluid{
-    /*border-width: 1px;
-    border-style: solid;
-}*/
+/*Id's de las dos navbar utilizadas*/
 #navbar1{
     justify-content: center;
     align-items: center;
@@ -19,6 +17,14 @@
     justify-content: center;
     align-items: center;
 }
+.nav-item{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'sdays', 'arial', sans-serif;
+    font-size: 20px;
+}
+/*Id's del buscador*/
 #search{
     margin-right: 20px;
 }
@@ -29,14 +35,9 @@ a{
     font-family: 'sdays', 'arial', sans-serif;
     font-size: 25px;
 }
-.nav-item{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'sdays', 'arial', sans-serif;
-    font-size: 20px;
-}
+/*Se agrega para resolución de moviles.*/
 @media(max-width:570px){
+    /*Para editar la resolución de la barra de busqueda en moviles.*/
     #search{
         width: 200px;
     }

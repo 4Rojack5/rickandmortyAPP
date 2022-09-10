@@ -1,77 +1,93 @@
+<!--Se añade un scroll infinito para poder ver todos los personajes, y el metodo scrollAbajo() que se encuentra en el ts de este componente.-->
 <div class="row" infinite-scroll  [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="scrollAbajo()">
-    <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let personaje of personajes">
-        <div class="card">
-            <div class="image">
-                <a [routerLink]="['/detalles-personaje', personaje.id]">
-                    <img class="card-img-top" id="img-personaje" [src]="personaje.image" [alt]="personaje.name">
-                </a>
-            </div>
-            <div class="card-inner">
-                <div class="header">
-                    <div class="row">
-                        <div class="col">
-                            <figure class="favorite mt-1 mb-1">
-                                <a>
-                                    <img class="card-img-top" (click)="favorito()" src="/assets/imgs/{{getIcon()}}" rel="preload">
-                                </a>
-                            </figure>
-                        </div>
-                    </div>
-                    <a class="link text-center" [routerLink]="['/detalles-personaje', personaje.id]" id="titulo_personaje">
-                        <h3>{{ personaje.name | slice: 0:16 }}</h3>   
-                    </a>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
-                            <div class="row">
-                                <div class="col">
-                                    <label id="titulo_personaje" for="">Estado:</label>
-                                </div>
-                                <div class="col" id="interpolation-data">
-                                    {{ personaje.status }}
-                                </div>    
-                            </div>  
-                            
-                        </li>
-                        <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
-                            <div class="row">
-                                <div class="col">
-                                    <label id="titulo_personaje">Especie:</label>
-                                </div>
-                                <div class="col" id="interpolation-data">
-                                    {{ personaje.species }}
-                                </div>    
-                            </div>  
-                        </li>
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col">
-                                    <label id="titulo_personaje">Ubicación:</label>
-                                </div>
-                                <div class="col">
-                                    <button type="button" class="btn btn-outline-dark" id="navbar-btn">
-                                    <a [routerLink]="['/detalles-ubicacion', personaje.id]" id="location">
-                                        {{ personaje.location | json | slice: 13:21 }}
-                                    </a>
-                                    </button>
-                                </div>    
-                            </div>  
-                        </li>
-                        <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
-                            <div class="row">
-                                <div class="col">
-                                    <label id="titulo_personaje">Ultimo Episodio:</label>
-                                </div>
-                                <div class="col" id="interpolation-data">
-                                    {{ personaje.episode | json | slice: 1:49 }}
-                                </div>    
-                            </div>  
-                        </li>
-                    </ul>
-            </div>
+ <!--Se añade un *ngFor para traer los datos del metodo que se creó en el ts de este componente.-->
+ <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let personaje of personajes">
+  <div class="card">
+    <div class="image">
+      <!--Se añade un routeLink para mostrar la vista de personaje detallada.-->
+      <a [routerLink]="['/detalles-personaje', personaje.id]">
+        <!--Se trae la imagen de cada personaje.-->
+      <img class="card-img-top" id="img-personaje" [src]="personaje.image" [alt]="personaje.name">
+      </a>
+    </div>
+    <div class="card-inner">
+     <div class="header">
+      <div class="row">
+        <div class="col">
+         <figure class="favorite mt-1 mb-1">
+          <a>
+            <!--Se añade un click para que active el metodo favorito() para añadir el personaje a favoritos ademas de traer una imagen por interpolación.-->
+          <img class="card-img-top" (click)="favorito()" src="/assets/imgs/{{getIcon()}}" rel="preload">
+          </a>
+         </figure>
         </div>
+       </div>
+          <!--Se añade un routeLink para mostrar la vista de personaje detallada.-->
+          <a class="link text-center" [routerLink]="['/detalles-personaje', personaje.id]" id="titulo_personaje">
+          <!--Se trae el nombre de cada personaje por interpolación y se recortan los caracteres con slice.-->
+          <h3>{{ personaje.name | slice: 0:16 }}</h3>   
+          </a>
+        <ul class="list-group list-group-flush">
+          <!--Se añade un routeLink para mostrar la vista de personaje detallada.-->
+          <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
+            <div class="row">
+              <div class="col">
+                <label id="titulo_personaje" for="">Estado:</label>
+              </div>
+              <div class="col" id="interpolation-data">
+               <!--Se trae el estado de cada personaje por interpolación.-->
+               {{ personaje.status }}
+              </div>    
+            </div>                 
+          </li>
+          <!--Se añade un routeLink para mostrar la vista de personaje detallada.-->
+          <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
+           <div class="row">
+            <div class="col">
+              <label id="titulo_personaje">Especie:</label>
+            </div>
+            <div class="col" id="interpolation-data">
+              <!--Se trae la especie de cada personaje por interpolación.-->
+              {{ personaje.species }}
+            </div>    
+           </div>  
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+             <div class="col">
+                <label id="titulo_personaje">Ubicación:</label>
+             </div>
+             <div class="col">
+                <button type="button" class="btn btn-outline-dark" id="navbar-btn">
+                <!--Se añade un routeLink para mostrar la vista de ubicación detallada.-->
+                <a [routerLink]="['/detalles-ubicacion', personaje.id]" id="location">
+              <!--Se trae la locación de cada personaje por interpolación se convierte en formato JSON porque es un object y se recortan los caracteres con slice.-->
+              {{ personaje.location | json | slice: 13:21 }}
+                </a>
+                </button>
+             </div>    
+            </div>  
+          </li>
+          <!--Se añade un routeLink para mostrar la vista de personaje detallada.-->
+          <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
+            <div class="row">
+              <div class="col">
+                <label id="titulo_personaje">Ultimo Episodio:</label>
+              </div>
+              <div class="col" id="interpolation-data">
+                <!--Se trae el episodio de cada personaje por interpolación, se convierte a JSON y se recortan los caracteres con slice.-->
+                {{ personaje.episode | json | slice: 1:49 }}
+              </div>    
+            </div>  
+          </li>
+     </ul>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-5 container-notFound" *ngIf="personajes.length <= 0">
-        <p>Sin Resultados</p>
-    </div>
+  </div>
+ </div>
+  <!--Se agrega un *ngIf para que evalué si hay personajes en la pagina, si no los hay que ponga en pantalla Sin Resultados.-->
+ <div class="col-xs-12 col-sm-12 col-md-12 mt-5 container-notFound" *ngIf="personajes.length <= 0">
+    <p>Sin Resultados</p>
+ </div>
 </div>
+<!--Se agrega un boton con ngClass para que no se oculte cuando se este haciendo scroll abajo, la función es que cuando se este bajando por la pagina el botón al hacer click accione el metodo scrollArriba() y suba al tope.-->
 <button class="btn btn-dark" [ngClass]="'no-hidden'" *ngIf="mostrarBotonArriba" (click)="scrollArriba()">Subir</button>

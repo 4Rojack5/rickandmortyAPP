@@ -4,4 +4,8 @@ input{
     border-width: 1px;
     border-style: solid;
     display: flex;
+    font-family: 'sdays', 'arial', sans-serif;
 }
+::placeholder {
+    font-family: 'sdays', 'arial', sans-serif;
+  }
