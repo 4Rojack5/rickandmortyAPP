@@ -5,6 +5,7 @@ import { DOCUMENT } from '@angular/common';
 
 import { Personaje } from '@app/shared/interfaces/personaje.interface';
 import { PersonajeService } from '@app/shared/services/personaje.service';
+import { LocalStorageService } from '@app/shared/services/localStorage.service';
 
 @Component({
   selector: 'app-lista-personaje',
@@ -27,11 +28,14 @@ export class ListaPersonajeComponent implements OnInit {
   private esconderScroll = 200;
   private mostrarScroll = 500;
 
+  @Input()
+  personaje!: Personaje;
   /*Importación en el constructor de DOCUMENT, del servicio de personaje, activatedRoute, del servicio de Ubicacion y router.*/
   constructor(@Inject(DOCUMENT) private document:Document,
               private personajeSvc: PersonajeService,
               private route:ActivatedRoute,
-              private router: Router) 
+              private router: Router,
+              private localStorage: LocalStorageService) 
   { 
     /*Se añade el metodo de urlCambiante() para que una vez al accionar el buscador de nuevo, busque otro personaje.*/
     this.urlCambiante();
@@ -110,16 +114,17 @@ export class ListaPersonajeComponent implements OnInit {
     })
   }
 
-  @Input() personaje: Personaje | undefined;
+
 
   getIcon(): string {
     return this.personaje?.isFavorite ? 'favorito_active.png' : 'favorito.png';
   }
 
   favorito(): void{
-    let isFavorite = this.personaje?.isFavorite;
+    const isFavorite = this.personaje?.isFavorite;
     this.getIcon();
-    isFavorite = !isFavorite;
+    this.personaje.isFavorite = !isFavorite;
+    this.localStorage.addOrRemove(this.personaje);
   }
 
 }

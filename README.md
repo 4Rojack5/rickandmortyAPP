@@ -16,6 +16,8 @@ Los personajes cuentan con un botón que redirecciona a la ubicación en la vist
 
 La aplicación cuenta con infinite scroll para poder visualizar todos los personajes ademas de un botón para volver al inicio de la pagina.
 
+Al momento de guarda personajes favoritos hubo un error "TypeError: Cannot set properties of undefined (setting 'isFavorite')", ya lo habia configurado todo en localStorage pero no se que paso, igualmente ahí esta el codigo en el localStorage para guardar datos.
+
 ## Development server
 
 Run `ng serve --o` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
