@@ -17,7 +17,6 @@ import { LocalStorageService } from '@app/shared/services/localStorage.service';
 export class ListaPersonajeComponent implements OnInit {
 
   personajes: Personaje[] = [];
-  page = 1;
   next: string | undefined;
   /*info: RequestInfo = {
     next: null,
@@ -34,18 +33,13 @@ export class ListaPersonajeComponent implements OnInit {
               private personajeSvc: PersonajeService,
               private route:ActivatedRoute,
               private router: Router,
-              private localStorageSvc: LocalStorageService,) 
+              private localStorageSvc: LocalStorageService) 
   { 
     this.urlCambiante();
   }
 
   ngOnInit(): void {
     this.personajesBuscador();
-    this.personajeSvc
-    .filtrarPagina(++this.page)
-    .subscribe((personajes: Personaje[])=>{
-      this.personajes = personajes;
-    });
   }
 
   //Decorador para escuchar un evento
@@ -60,12 +54,10 @@ export class ListaPersonajeComponent implements OnInit {
   }
 
   scrollAbajo():void{
-    this.personajeSvc
-    .filtrarPagina(this.page++)
-    .subscribe((personajes: Personaje[])=>{
-      this.personajes.push(...personajes);
-    });
-      
+    if(this.next){
+      this.pageNum++;
+      this.getData();
+    }
   }
   scrollArriba():void{
     this.document.body.scrollTop = 0; //Safari

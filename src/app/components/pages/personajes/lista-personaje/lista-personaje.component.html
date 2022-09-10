@@ -3,7 +3,7 @@
         <div class="card">
             <div class="image">
                 <a [routerLink]="['/detalles-personaje', personaje.id]">
-                    <img class="card-img-top" [src]="personaje.image" [alt]="personaje.name">
+                    <img class="card-img-top" id="img-personaje" [src]="personaje.image" [alt]="personaje.name">
                 </a>
             </div>
             <div class="card-inner">
@@ -17,16 +17,16 @@
                             </figure>
                         </div>
                     </div>
-                    <a class="text-center" [routerLink]="['/detalles-personaje', personaje.id]" id="titulo_personaje">
+                    <a class="link text-center" [routerLink]="['/detalles-personaje', personaje.id]" id="titulo_personaje">
                         <h3>{{ personaje.name | slice: 0:16 }}</h3>   
                     </a>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
                             <div class="row">
                                 <div class="col">
-                                    <label for="">Estado:</label>
+                                    <label id="titulo_personaje" for="">Estado:</label>
                                 </div>
-                                <div class="col">
+                                <div class="col" id="interpolation-data">
                                     {{ personaje.status }}
                                 </div>    
                             </div>  
@@ -35,9 +35,9 @@
                         <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
                             <div class="row">
                                 <div class="col">
-                                    <label for="">Especie:</label>
+                                    <label id="titulo_personaje">Especie:</label>
                                 </div>
-                                <div class="col">
+                                <div class="col" id="interpolation-data">
                                     {{ personaje.species }}
                                 </div>    
                             </div>  
@@ -45,19 +45,23 @@
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col">
-                                    <label for="">Ubicación:</label>
+                                    <label id="titulo_personaje">Ubicación:</label>
                                 </div>
                                 <div class="col">
-                                    <a [routerLink]="['/detalles-ubicacion', personaje.id]">{{ personaje.location | json | slice: 13:21 }}</a>
+                                    <button type="button" class="btn btn-outline-dark" id="navbar-btn">
+                                    <a [routerLink]="['/detalles-ubicacion', personaje.id]" id="location">
+                                        {{ personaje.location | json | slice: 13:21 }}
+                                    </a>
+                                    </button>
                                 </div>    
                             </div>  
                         </li>
                         <li class="list-group-item" [routerLink]="['/detalles-personaje', personaje.id]">
                             <div class="row">
                                 <div class="col">
-                                    <label for="">Ultimo Episodio:</label>
+                                    <label id="titulo_personaje">Ultimo Episodio:</label>
                                 </div>
-                                <div class="col">
+                                <div class="col" id="interpolation-data">
                                     {{ personaje.episode | json | slice: 1:49 }}
                                 </div>    
                             </div>  

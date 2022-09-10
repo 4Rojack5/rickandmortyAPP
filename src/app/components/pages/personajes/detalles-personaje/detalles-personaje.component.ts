@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Personaje } from '@app/shared/interfaces/personaje.interface';
 import { PersonajeService } from '@app/shared/services/personaje.service';
@@ -31,6 +31,17 @@ export class DetallesPersonajeComponent implements OnInit {
   volver(): void{
     this.location.back();
     //window.history.back();
+  }
+
+  @Input() personaje: Personaje | undefined;
+
+  getIcon(): string {
+    return this.personaje?.isFavorite ? 'favorito_active.png' : 'favorito.png';
+  }
+  favorito(): void{
+    let isFavorite = this.personaje?.isFavorite;
+    this.getIcon();
+    isFavorite = !isFavorite;
   }
 
 }

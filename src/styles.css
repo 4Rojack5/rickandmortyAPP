@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 html {
     font-family: 'sdays', sans-serif;
-    background-color: #5E2C99;
     scroll-behavior: smooth;
   }
+body{
+    background: linear-gradient(40deg, #461b64, #5b329c);
+}
 .container{
     margin-top: 4rem;
 }
